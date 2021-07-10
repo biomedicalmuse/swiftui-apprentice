@@ -8,10 +8,9 @@ struct HeaderView: View {
             Text(exerciseName)
                 .font(.largeTitle)
             HStack {
-                Image(systemName: "1.circle")
-                Image(systemName: "2.circle")
-                Image(systemName: "3.circle")
-                Image(systemName: "4.circle")
+                ForEach(1..<5) { number in
+                    Image(systemName: "\(number).circle")
+                }
             }
             .font(.title2)
         }
