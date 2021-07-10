@@ -22,9 +22,11 @@ struct ExerciseView: View {
                     .font(.system(size: 90))
                 Button("Start/Done") {}
                     .font(.title3)
-                    
+                    .padding()
                 Text("Rating")
-                Text("History button")
+                Spacer()
+                Button("History") {}
+                    .padding(.bottom)
             }
         }
     }
