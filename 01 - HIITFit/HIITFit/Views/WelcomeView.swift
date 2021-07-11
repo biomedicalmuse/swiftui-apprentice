@@ -3,7 +3,32 @@ import SwiftUI
 
 struct WelcomeView: View {
     var body: some View {
-        HeaderView(titleText: "Welcome")
+        ZStack {
+            VStack {
+                HeaderView(titleText: "Welcome")
+                Spacer()
+                Button("History") {}
+                  .padding(.bottom)
+						
+								
+            }
+				VStack {
+					HStack(alignment: .bottom) {
+						VStack(alignment: .leading) {
+							Text("Get fit")
+								.font(.largeTitle)
+							Text("with high intensity interval training")
+								.font(.headline)
+						}
+						Image("step-up")
+							.resizable()
+							.aspectRatio(contentMode: .fill)
+							.frame(width: 240, height: 240)
+							.clipShape(Circle())
+					}
+				
+				}
+        }
     }
 }
 
