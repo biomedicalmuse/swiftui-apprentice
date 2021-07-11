@@ -24,7 +24,13 @@ struct WelcomeView: View {
 							.resizedToFill(width: 240, height: 240)
 							.clipShape(Circle())
 					}
-				
+					Button(action: {}) {
+						Text("Get Started")
+						Image(systemName: "arrow.right.circle")
+//						Label("Get Started", systemImage: "arrow.right.circle")
+					}
+					.font(.title2)
+					.padding()
 				}
         }
     }
