@@ -21,9 +21,7 @@ struct WelcomeView: View {
 								.font(.headline)
 						}
 						Image("step-up")
-							.resizable()
-							.aspectRatio(contentMode: .fill)
-							.frame(width: 240, height: 240)
+							.resizedToFill(width: 240, height: 240)
 							.clipShape(Circle())
 					}
 				
