@@ -6,7 +6,7 @@ struct HistoryView: View {
 	 var body: some View {
 		  ZStack(alignment: .topTrailing) {
 				VStack {
-					 Text("History")
+					 Text(NSLocalizedString("History", comment: "view user activity"))
 						  .font(.title)
 						  .padding()
 					 Form {
