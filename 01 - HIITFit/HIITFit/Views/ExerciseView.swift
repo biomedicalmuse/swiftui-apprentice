@@ -2,8 +2,15 @@ import SwiftUI
 import AVKit
 
 struct ExerciseView: View {
+	@Binding var selectedTab: Int
     let index: Int
     let interval: TimeInterval = 30
+	
+	var lastExercise: Bool {
+		// Check whether the last exercise is being displayed
+		index + 1 == Exercise.exercises.count
+	}
+	
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -18,11 +25,18 @@ struct ExerciseView: View {
                 }
                 Text(Date().addingTimeInterval(interval), style: .timer)
                     .font(.system(size: 90))
-                Button(NSLocalizedString(
-								"Start/Done",
-		  comment: "begin exercise / mark as finished")) {}
-                    .font(.title3)
-                    .padding()
+					HStack(spacing: 150) {
+						Button("Start") {}
+						Button("Done") {
+							/*
+							If this is the last exercise, go to WelcomeView.
+							Otherwise, go to the next exercise.
+							*/
+							selectedTab = lastExercise ? 9 : selectedTab + 1
+						}
+					}
+					  .font(.title3)
+					  .padding()
                 RatingView()
                     .padding()
                 Spacer()
@@ -35,7 +49,7 @@ struct ExerciseView: View {
 
 struct ExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseView(index: 0)
+		ExerciseView(selectedTab: .constant(1), index: 1)
     }
 }
 
