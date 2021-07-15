@@ -32,15 +32,10 @@ struct ExerciseView: View {
 				"Couldn't find \(Exercise.exercises[index].videoName).mp4")
 				.foregroundColor(.red)
 		  }
-			if showTimer {
-			  TimerView(timerDone: $timerDone)
-			}
-
 		  HStack(spacing: 150) {
 			Button("Start Exercise") {
 			  showTimer.toggle()
 			}
-
 			 Button("Done") {
 				timerDone = false
 				showTimer.toggle()
@@ -58,9 +53,12 @@ struct ExerciseView: View {
 		  }
 		  .font(.title3)
 		  .padding()
+			if showTimer {
+				TimerView(timerDone: $timerDone)
+			}
+		  Spacer()
 		  RatingView(rating: $rating)
 			 .padding()
-		  Spacer()
 		  Button("History") {
 			 showHistory.toggle()
 		  }
