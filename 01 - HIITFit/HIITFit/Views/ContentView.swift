@@ -11,6 +11,7 @@ struct ContentView: View {
 			  .tag(index)  // 3
 		 }
 	  }
+	  .environmentObject(HistoryStore()) // HistoryStore is now available to all views
 	  .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 	}
 
