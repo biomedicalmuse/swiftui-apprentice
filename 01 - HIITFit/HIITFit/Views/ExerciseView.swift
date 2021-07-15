@@ -4,6 +4,7 @@ import AVKit
 struct ExerciseView: View {
 	@Binding var selectedTab: Int
 	@State private var rating = 0
+	@State private var showHistory = false
     let index: Int
     let interval: TimeInterval = 30
 	
@@ -41,8 +42,13 @@ struct ExerciseView: View {
 					RatingView(rating: $rating)
                     .padding()
                 Spacer()
-                Button(NSLocalizedString("History", comment: "view user activity")) {}
-                    .padding(.bottom)
+                Button(NSLocalizedString("History", comment: "view user activity")) {
+						showHistory.toggle()
+					}
+					.padding(.bottom)
+					.sheet(isPresented: $showHistory) {
+						HistoryView(showHistory: $showHistory)
+					}
             }
         }
     }
