@@ -5,6 +5,7 @@ struct ExerciseView: View {
 	@Binding var selectedTab: Int
 	@State private var rating = 0
 	@State private var showHistory = false
+	@State private var showSuccess = false
     let index: Int
     let interval: TimeInterval = 30
 	
@@ -34,7 +35,15 @@ struct ExerciseView: View {
 							If this is the last exercise, go to WelcomeView.
 							Otherwise, go to the next exercise.
 							*/
-							selectedTab = lastExercise ? 9 : selectedTab + 1
+							
+							if lastExercise {
+								showSuccess.toggle()
+							} else {
+								selectedTab += 1
+							}
+						}
+						.sheet(isPresented: $showSuccess) {
+							SuccessView(selectedTab: $selectedTab)
 						}
 					}
 					  .font(.title3)
@@ -56,7 +65,7 @@ struct ExerciseView: View {
 
 struct ExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-		ExerciseView(selectedTab: .constant(1), index: 1)
+		ExerciseView(selectedTab: .constant(3), index: 3)
     }
 }
 
