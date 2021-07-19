@@ -36,17 +36,16 @@ struct ExerciseView: View {
 			Button("Start Exercise") {
 			  showTimer.toggle()
 			}
-			 Button("Done") {
-				history.addDoneExercise(Exercise.exercises[index].exerciseName)
-				timerDone = false
-				showTimer.toggle()
-
-				if lastExercise {
-				  showSuccess.toggle()
-				} else {
-				  selectedTab += 1
-				}
-			 }
+			Button("Done") {
+			  history.addDoneExercise(Exercise.exercises[index].exerciseName)
+			  timerDone = false
+			  showTimer.toggle()
+			  if lastExercise {
+				 showSuccess.toggle()
+			  } else {
+				 selectedTab += 1
+			  }
+			}
 			 .disabled(!timerDone)
 			 .sheet(isPresented: $showSuccess) {
 				SuccessView(selectedTab: $selectedTab)
