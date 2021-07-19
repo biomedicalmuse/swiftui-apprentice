@@ -8,7 +8,31 @@ struct RatingView: View {
 	let onColor = Color.red
 	let offColor = Color.gray
 	
-    var body: some View {
+	// Make sure the ratings string is the correct length
+	init(exerciseIndex: Int) {
+		self.exerciseIndex = exerciseIndex
+		let desiredLength = Exercise.exercises.count
+		/*
+		 Ratings must have as many characters as there are exercises.
+		 If ratings is too short, pad out the string with zeros
+		*/
+		if ratings.count < desiredLength {
+			ratings = ratings.padding(toLength: desiredLength, withPad: "0", startingAt: 0)
+		}
+	}
+	
+	fileprivate func convertRating() {
+		// 2
+		let index = ratings.index(
+			ratings.startIndex,
+			offsetBy: exerciseIndex)
+		// 3
+		let character = ratings[index]
+		// 4
+		rating = character.wholeNumberValue ?? 0
+	}
+	
+	var body: some View {
         HStack {
             ForEach(1 ..< maximumRating + 1) { index in
                 Image(systemName: "waveform.path.ecg")
@@ -18,14 +42,11 @@ struct RatingView: View {
 							updateRating(index: index)
 						}
 						.onAppear {
-						  // 2
-						  let index = ratings.index(
-							 ratings.startIndex,
-							 offsetBy: exerciseIndex)
-						  // 3
-						  let character = ratings[index]
-						  // 4
-						  rating = character.wholeNumberValue ?? 0
+							convertRating()
+						}
+						// If the property changes in one window, it will change in others 
+						.onChange(of: ratings) { _ in
+							convertRating()
 						}
             }
         }
